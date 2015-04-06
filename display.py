@@ -18,12 +18,18 @@ def display_set_caption(text):
 def display_screen(screen, image):
     screen.blit(image, (0,0))
          
-def display_upadte():
-    pygame.display.update()    
+def display_update():
+    pygame.display.update()   
 
-def display_who_is_first():
+def check_for_quit():
+    for event in pygame.event.get((QUIT, KEYUP)):
+        if event.type == QUIT or (event.type == KEYUP and event.key == K_ESCAPE):
+            pygame.quit()
+            exit() 
+
+def display_who_is_first(show_text, show_rect, white_text, white_rect, black_text, black_rect):
     while True:
-        #check_for_quit()
+        check_for_quit()
 
         for event in pygame.event.get():
             if event.type == MOUSEBUTTONUP:
@@ -36,5 +42,5 @@ def display_who_is_first():
         constant.screen.blit(show_text, show_rect)
         constant.screen.blit(black_text, black_rect)
         constant.screen.blit(white_text, white_rect)
-        pygame.display.update()
-        mainClock.tick(FPS)
+        display_update()
+        constant.main_clock.tick(constant.FPS)

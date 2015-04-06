@@ -6,8 +6,6 @@ Created on Apr 3, 2015
 @author: Xing
 '''
 
-
-
 import constant, display
 import pygame, copy, random, time
 from pygame.locals import *
@@ -36,6 +34,8 @@ class Board(object):
         self.bg_image = pygame.transform.smoothscale(self.bg_image, (constant.WINDOW_WIDTH, constant.WINDOW_HEIGHT))
 
         self.bg_image.blit(self.board_image, self.board_rect)
+
+        constant.main_clock = pygame.time.Clock()
     
     #create board
     def get_new_noard(self):
@@ -145,13 +145,13 @@ class Board(object):
                int(constant.YMARGIN) + y * constant.SPACE + int(constant.SPACE / 2)
 
     def enter_player_tile(self):
-        show_text = self.font.render('Choose Black or White', True, constant.FONT_COLOR, constant.FONT_BACKGROUND)
+        show_text = self.font.render('Choose ''Black'' or White', True, constant.FONT_COLOR, constant.FONT_BACKGROUND)
         show_rect = show_text.get_rect()
         show_rect.center = int(constant.WINDOW_WIDTH / 2), int(constant.WINDOW_HEIGHT / 2)
 
         white_text = self.big_font.render('Black', True, constant.FONT_COLOR, constant.FONT_BACKGROUND)
         white_rect = white_text.get_rect()
-        white_rect.center = int(constant.WINDOW_WIDTH / 2) + constant.SPACE * 2, \
+        white_rect.center = int(constant.WINDOW_WIDTH / 2) - constant.SPACE * 2, \
                             int(constant.WINDOW_HEIGHT / 2) + constant.SPACE
 
         black_text = self.big_font.render('White', True, constant.FONT_COLOR, constant.FONT_BACKGROUND)
@@ -159,4 +159,4 @@ class Board(object):
         black_rect.center = int(constant.WINDOW_WIDTH / 2) + constant.SPACE * 2, \
                             int(constant.WINDOW_HEIGHT / 2) + constant.SPACE
 
-
+        display.display_who_is_first(show_text, show_rect, white_text, white_rect, black_text, black_rect)

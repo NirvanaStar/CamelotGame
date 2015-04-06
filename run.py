@@ -19,9 +19,10 @@ def start_play():
         b.reset_board(b.main_board)
         display.display_screen(constant.screen, b.bg_image)
         b.draw_board()
+        player_tile, computer_tile = b.enter_player_tile()
         
         for event in pygame.event.get():
             if event.type == QUIT:
                 exit()
                 
-        display.display_upadte()
+        display.display_update()

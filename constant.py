@@ -44,5 +44,8 @@ FONT_BACKGROUND = FONT_BG
 WHITE_TILE = 'WHITE_TILE'
 BLACK_TILE = 'BLACK_TILE'
 
+FPS = 10
+
 #For display
 screen = 0
+main_clock = 0
