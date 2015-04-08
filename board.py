@@ -12,10 +12,11 @@ from pygame.locals import *
 from sys import exit
 
 class Board(object):
+    game_screen = constant.gameScreen()
 
     def __init__(self):
         self.main_board = []
-        constant.screen = display.display_set_mode(constant.WINDOW_WIDTH, constant.WINDOW_HEIGHT)
+        self.game_screen.screen = display.display_set_mode(constant.WINDOW_WIDTH, constant.WINDOW_HEIGHT)
         display.display_set_caption("Camelot Game")
 
         #initial font
@@ -59,7 +60,7 @@ class Board(object):
            
             xend = xstart + constant.BOARD_WIDTH * constant.SPACE
             yend = ystart
-            pygame.draw.line(constant.screen, constant.GRAY, (xstart, ystart), (xend, yend))
+            pygame.draw.line(self.game_screen.screen, constant.GRAY, (xstart, ystart), (xend, yend))
             
         for y in range(constant.BOARD_WIDTH + 1):
             xstart, ystart = self.board_rect.topleft
@@ -68,7 +69,7 @@ class Board(object):
             yend = ystart + constant.BOARD_HEIGHT * constant.SPACE
             xend = xstart
                 
-            pygame.draw.line(constant.screen, constant.GRAY, (xstart, ystart), (xend, yend))
+            pygame.draw.line(self.game_screen.screen, constant.GRAY, (xstart, ystart), (xend, yend))
         
         for x in range(constant.BOARD_HEIGHT + 1):
             xstart1, ystart = self.board_rect.topleft
@@ -92,8 +93,8 @@ class Board(object):
             else:
                 continue
                 
-            pygame.draw.line(constant.screen, constant.LINE_COLOR, (xstart1, ystart), (xend1, yend))
-            pygame.draw.line(constant.screen, constant.LINE_COLOR, (xstart2, ystart), (xend2, yend))
+            pygame.draw.line(self.game_screen.screen, constant.LINE_COLOR, (xstart1, ystart), (xend1, yend))
+            pygame.draw.line(self.game_screen.screen, constant.LINE_COLOR, (xstart2, ystart), (xend2, yend))
             
         for y in range(constant.BOARD_WIDTH + 1):
             xstart, ystart1 = self.board_rect.topleft
@@ -104,7 +105,7 @@ class Board(object):
                 ystart1 = ystart1 + 3 * constant.SPACE
                 yend1 = ystart1 + 8 * constant.SPACE
                 xend = xstart
-                pygame.draw.line(constant.screen, constant.LINE_COLOR, (xstart, ystart1), (xend, yend1))
+                pygame.draw.line(self.game_screen.screen, constant.LINE_COLOR, (xstart, ystart1), (xend, yend1))
                 continue
             
             if y > 0 and y < 4:
@@ -124,8 +125,8 @@ class Board(object):
             else:
                 continue
                 
-            pygame.draw.line(constant.screen, constant.LINE_COLOR, (xstart, ystart1), (xend, yend1))
-            pygame.draw.line(constant.screen, constant.LINE_COLOR, (xstart, ystart2), (xend, yend2))
+            pygame.draw.line(self.game_screen.screen, constant.LINE_COLOR, (xstart, ystart1), (xend, yend1))
+            pygame.draw.line(self.game_screen.screen, constant.LINE_COLOR, (xstart, ystart2), (xend, yend2))
             
         #draw chess
         for x in range(constant.BOARD_WIDTH):
@@ -134,18 +135,18 @@ class Board(object):
                 
                 if self.main_board[x][y] == constant.WHITE_TILE:
                     tile_color = constant.WHITE
-                    pygame.draw.circle(constant.screen, tile_color, (center_x, center_y), int(constant.SPACE / 2) - 4)
+                    pygame.draw.circle(self.game_screen.screen, tile_color, (center_x, center_y), int(constant.SPACE / 2) - 4)
                     
                 elif self.main_board[x][y] == constant.BLACK_TILE:
                     tile_color = constant.BLACK
-                    pygame.draw.circle(constant.screen, tile_color, (center_x, center_y), int(constant.SPACE / 2) - 4)
+                    pygame.draw.circle(self.game_screen.screen, tile_color, (center_x, center_y), int(constant.SPACE / 2) - 4)
         
     def translate_board_to_pixel(self, x,y):
         return int(constant.XMARGIN) + x * constant.SPACE + int(constant.SPACE / 2), \
                int(constant.YMARGIN) + y * constant.SPACE + int(constant.SPACE / 2)
 
     def enter_player_tile(self):
-        show_text = self.font.render('Choose ''Black'' or White', True, constant.FONT_COLOR, constant.FONT_BACKGROUND)
+        show_text = self.font.render('Choose Black or White', True, constant.FONT_COLOR, constant.FONT_BACKGROUND)
         show_rect = show_text.get_rect()
         show_rect.center = int(constant.WINDOW_WIDTH / 2), int(constant.WINDOW_HEIGHT / 2)
 
@@ -159,4 +160,4 @@ class Board(object):
         black_rect.center = int(constant.WINDOW_WIDTH / 2) + constant.SPACE * 2, \
                             int(constant.WINDOW_HEIGHT / 2) + constant.SPACE
 
-        display.display_who_is_first(show_text, show_rect, white_text, white_rect, black_text, black_rect)
+        return display.display_who_is_first(show_text, show_rect, white_text, white_rect, black_text, black_rect)

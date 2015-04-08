@@ -47,5 +47,18 @@ BLACK_TILE = 'BLACK_TILE'
 FPS = 10
 
 #For display
-screen = 0
+
+class Singleton(object):
+    def __new__(cls, *args, **kw):
+        if not hasattr(cls, '_instance'):
+            orig = super(Singleton, cls)
+            cls._instance = orig.__new__(cls, *args, **kw)
+        return cls._instance
+
+
+
+
+class gameScreen(Singleton):
+    screen = 0
+    
 main_clock = 0

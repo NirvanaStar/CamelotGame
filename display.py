@@ -9,6 +9,8 @@ import pygame, copy, random, time
 from pygame.locals import *
 from sys import exit
 
+game_screen = constant.gameScreen()
+
 def display_set_mode(width, height):
     return pygame.display.set_mode((width, height))
 
@@ -16,7 +18,7 @@ def display_set_caption(text):
     pygame.display.set_caption(text)
 
 def display_screen(screen, image):
-    screen.blit(image, (0,0))
+    game_screen.screen.blit(image, (0,0))
          
 def display_update():
     pygame.display.update()   
@@ -39,8 +41,8 @@ def display_who_is_first(show_text, show_rect, white_text, white_rect, black_tex
                 elif white_rect.collidepoint((center_x, center_y)):
                     return [constant.WHITE_TILE, constant. BLACK_TILE]
 
-        constant.screen.blit(show_text, show_rect)
-        constant.screen.blit(black_text, black_rect)
-        constant.screen.blit(white_text, white_rect)
+        game_screen.screen.blit(show_text, show_rect)
+        game_screen.screen.blit(black_text, black_rect)
+        game_screen.screen.blit(white_text, white_rect)
         display_update()
         constant.main_clock.tick(constant.FPS)
