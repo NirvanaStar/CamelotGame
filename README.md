@@ -18,3 +18,4 @@ A piece can move either horizontally, vertically, or diagonally in three ways
 3. Capturing move: jump over an adjacent enemy piece to an empty square immediately beyond. The enemy piece is captured and removed from the board. Multiple successive jumping moves are not allowed. Capturing moves are obligatory whenever they are possible.
 
 
+![](/board.png)
