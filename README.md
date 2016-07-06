@@ -9,8 +9,12 @@ The objective of the game is to be the first player to occupy the opponent's cas
 A castle is captured if one or both of the squares are occupied by the opponent’s pieces
 
 ## Move rules
-A piece can move either horizontally, vertically, or diagonally in three ways:
-1. Plain move
-2. Cantering move
-3. Capturing move
+A piece can move either horizontally, vertically, or diagonally in three ways
+
+1. Plain move: move into an empty adjacent square in any direction
+
+2. Cantering move: one leaping move over an adjacent friendly piece to an empty square immediately beyond. Multiple successive leaps over a player's own pieces are not allowed. Cantering move is optional and not obligatory.
+
+3. Capturing move: jump over an adjacent enemy piece to an empty square immediately beyond. The enemy piece is captured and removed from the board. Multiple successive jumping moves are not allowed. Capturing moves are obligatory whenever they are possible.
+
 
